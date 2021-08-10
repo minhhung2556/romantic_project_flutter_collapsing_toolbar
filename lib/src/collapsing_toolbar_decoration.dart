@@ -4,12 +4,19 @@ import 'common.dart';
 
 const double _kDecorationElevation = 8.0;
 
+/// This is the default decoration for [CollapsingToolbar].
+/// It is the default design, and you can create your own decoration that based on this solution. It's easy to handle.
 class CollapsingToolbarDecoration extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;
   final Color foregroundColor;
   final double animationValue;
 
+  /// Create a default decoration.
+  ///
+  /// [child] is your [CollapsingToolbar].
+  /// It draws some overlay ellipses with [foregroundColor] on a background with [backgroundColor].
+  /// [animationValue] is calculated by the scrolling offset, see also in [CollapsingToolbar].
   const CollapsingToolbarDecoration({
     Key? key,
     required this.child,
@@ -29,8 +36,8 @@ class CollapsingToolbarDecoration extends StatelessWidget {
       painter: _DefaultCollapsingToolbarDecorationPainter(
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
-        elevation: _kDecorationElevation,
         animationValue: animationValue,
+        elevation: _kDecorationElevation,
       ),
     );
   }
@@ -39,14 +46,14 @@ class CollapsingToolbarDecoration extends StatelessWidget {
 class _DefaultCollapsingToolbarDecorationPainter extends CustomPainter {
   final Color backgroundColor;
   final Color foregroundColor;
-  final double elevation;
   final double animationValue;
+  final double elevation;
 
   const _DefaultCollapsingToolbarDecorationPainter({
     required this.backgroundColor,
     required this.foregroundColor,
-    required this.elevation,
     required this.animationValue,
+    required this.elevation,
   });
 
   @override
