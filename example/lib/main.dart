@@ -11,11 +11,11 @@ const kSampleIcons = [
   Icons.account_box_outlined,
 ];
 const kSampleIconLabels = [
-  'Changes',
-  'Receipt',
-  'Transfer',
-  'TopUp',
-  'Account',
+  'Khuyến mãi',
+  'Lịch sử',
+  'Chuyển tiền',
+  'Nạp tiền',
+  'Tài khoản',
 ];
 
 class MyApp extends StatefulWidget {
@@ -35,7 +35,6 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.red,
       ),
       home: Scaffold(
-        backgroundColor: Colors.red.shade800,
         body: Container(
           margin: const EdgeInsets.only(top: 24.0),
           child: Column(
@@ -46,6 +45,8 @@ class _MyAppState extends State<MyApp> {
                   controller: controller,
                   expandedHeight: 160,
                   collapsedHeight: 64,
+                  decorationForegroundColor: Color(0xffd90000),
+                  decorationBackgroundColor: Colors.white,
                   onCollapsing: (double offset) {
                     setState(() {
                       headerOffset = offset;
@@ -110,9 +111,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                     );
                   },
-                  featureOnPressed: (context, index) {
-                    print('_MyAppState.featureOnPressed: $index');
-                  },
+                  featureOnPressed: (context, index) {},
                 ),
               ),
               Expanded(

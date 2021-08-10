@@ -2,6 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'collapsing_toolbar_decoration.dart';
+
+const Color kDefaultBackgroundColor = Colors.white;
+const Color kDefaultForegroundColor = Color(0xfff42222);
+
 class CollapsingToolbar extends StatefulWidget {
   final ScrollController controller;
   final double expandedHeight;
@@ -19,6 +24,9 @@ class CollapsingToolbar extends StatefulWidget {
   final ButtonStyle? featureButtonStyle;
   final double featureCollapsedFactor;
   final Function(BuildContext context, int index) featureOnPressed;
+  final Color decorationBackgroundColor;
+  final Color decorationForegroundColor;
+  final bool useDefaultDecoration;
 
   const CollapsingToolbar({
     Key? key,
@@ -38,6 +46,9 @@ class CollapsingToolbar extends StatefulWidget {
     this.featureButtonStyle,
     this.featureCollapsedFactor: 0.6,
     required this.featureOnPressed,
+    this.decorationBackgroundColor: kDefaultBackgroundColor,
+    this.decorationForegroundColor: kDefaultForegroundColor,
+    this.useDefaultDecoration: true,
   }) : super(key: key);
 
   @override
@@ -76,8 +87,7 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red.shade800,
+    var body = Container(
       height: toolbarHeight,
       child: Stack(
         children: [
@@ -167,5 +177,13 @@ class _CollapsingToolbarState extends State<CollapsingToolbar> {
         ],
       ),
     );
+    return widget.useDefaultDecoration
+        ? CollapsingToolbarDecoration(
+            animationValue: animationValue,
+            backgroundColor: widget.decorationBackgroundColor,
+            foregroundColor: widget.decorationForegroundColor,
+            child: body,
+          )
+        : body;
   }
 }
